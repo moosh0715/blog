@@ -1,0 +1,42 @@
+---
+layout: default
+title:
+---
+<main>
+  <div class="page-shell">
+    <section class="hero-grid" aria-labelledby="hero-title">
+      <div class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">ENGINEERING LOG · 2026</p>
+          <h1 id="hero-title">배우고, 만들고,<br>기록합니다.</h1>
+          <div class="lime-line"></div>
+          <p class="hero-description">레이다 · DSP · FPGA를 공부하고 구현하며 남기는 기술 노트</p>
+          <div class="topic-row"><span>◉ <b>RADAR</b></span><span>⌁ <b>DSP</b></span><span>▦ <b>FPGA</b></span></div>
+        </div>
+        <div class="radar" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span></div>
+        <div class="metrics"><span><small>POSTS</small><b>{{ site.posts | size }}</b></span><span><small>TOPICS</small><b>4</b></span><span><small>STATUS</small><b>ONLINE</b></span></div>
+      </div>
+      <div class="insights">
+        <article class="panel chain"><div class="panel-label"><span>01</span> SIGNAL CHAIN</div><div class="signal-chain"><i>RF</i><b>→</b><i>LNA</i><b>→</b><i>MIXER</i><b>→</b><i>ADC</i><b>→</b><i class="selected">DSP / FPGA</i><b>→</b><i>DETECT</i></div><div class="stage"><span>RF FRONT-END</span><span>DIGITAL PROCESSING</span></div></article>
+        <article class="panel compression"><div class="panel-label"><span>02</span> PULSE COMPRESSION</div><div class="wave">∿∿∿∿∿ <b>→</b> <strong>│╲│</strong></div><div class="before"><span>BEFORE<small>TBP = 128</small></span><span>AFTER<small>PSLR = −27.1 dB</small></span></div></article>
+        <article class="panel chart"><div class="panel-label"><span>03</span> RANGE–DOPPLER</div><div class="bars">{% for n in (1..13) %}<i style="height:{{ n | modulo: 7 | plus: 2 | times: 10 }}%"></i>{% endfor %}</div><div class="axis"><span>RANGE</span><span>DOPPLER</span></div></article>
+      </div>
+    </section>
+
+    <section id="posts" class="posts-section">
+      <div class="section-heading"><h2><i></i> 최근 기록</h2><label class="search"><span>⌕</span><input id="post-search" type="search" placeholder="키워드로 글 검색" aria-label="글 검색"></label></div>
+      <div class="post-grid" id="post-grid">
+        {% for post in site.posts %}
+        <a class="post-card" href="{{ post.url | relative_url }}" data-search="{{ post.title | downcase }} {{ post.description | downcase }} {{ post.tags | join: ' ' | downcase }}">
+          <div class="post-visual visual-{{ forloop.index }}"><span>0{{ forloop.index }}</span><b>{% if forloop.index == 2 %}S_AXIS → [ FFT IP ] → M_AXIS{% else %}▁▃▅▂▇▃▁ → │╲│{% endif %}</b></div>
+          <div class="post-content"><div class="tags" {% if forloop.first %}id="tags"{% endif %}>{% for tag in post.tags %}<span class="tag tag-{{ tag | downcase }}">{{ tag }}</span>{% endfor %}</div><h3>{{ post.title }}</h3><p>{{ post.description }}</p><footer><time>{{ post.date | date: "%Y.%m.%d" }}</time><span>{{ post.content | number_of_words | divided_by: 250 | plus: 1 }}분</span></footer></div>
+        </a>
+        {% endfor %}
+      </div>
+      <p class="empty" id="empty-state" hidden>일치하는 글이 없어. 다른 키워드로 검색해 봐.</p>
+    </section>
+
+    <section id="about" class="about"><p>ABOUT THIS LOG</p><h2>복잡한 신호를<br>이해 가능한 기록으로.</h2><span>실무에서 배운 것, 직접 구현하며 확인한 것, 다시 찾고 싶은 내용을 Markdown으로 정리하는 개인 기술 블로그야.</span></section>
+    <footer class="site-footer"><span>© 2026 SIGNAL / NOTES</span><span>BUILT WITH MARKDOWN · DEPLOYED ON GITHUB PAGES</span></footer>
+  </div>
+</main>
