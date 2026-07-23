@@ -1,0 +1,10 @@
+title: "SIGNAL / NOTES"
+description: "레이다, DSP, FPGA를 공부하고 구현하며 남기는 개인 기술 블로그"
+url: "https://moosh0715.github.io"
+baseurl: "/blog"
+lang: ko
+markdown: kramdown
+permalink: /posts/:title/
+future: true
+exclude:
+  - README.md
