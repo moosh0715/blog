@@ -1,0 +1,81 @@
+backend:
+  name: github
+  repo: moosh0715/blog
+  branch: main
+
+site_url: https://moosh0715.github.io/blog/
+display_url: https://moosh0715.github.io/blog/
+logo_url: https://moosh0715.github.io/blog/assets/favicon.svg
+locale: ko
+
+media_folder: assets/uploads
+public_folder: /blog/assets/uploads
+
+publish_mode: simple
+show_preview_links: true
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: posts
+    label: 게시글
+    label_singular: 게시글
+    folder: _posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "posts/{{slug}}/"
+    summary: "{{title}} · {{date}}"
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    view_filters:
+      - label: 레이다
+        field: tags
+        pattern: RADAR
+      - label: DSP
+        field: tags
+        pattern: DSP
+      - label: FPGA
+        field: tags
+        pattern: FPGA
+    fields:
+      - label: 레이아웃
+        name: layout
+        widget: hidden
+        default: post
+      - label: 제목
+        name: title
+        widget: string
+        required: true
+      - label: 게시일
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        default: "{{now}}"
+      - label: 목록 설명
+        name: description
+        widget: text
+        required: true
+        hint: 블로그 첫 화면 카드에 표시할 한두 문장 설명
+      - label: 태그
+        name: tags
+        widget: list
+        allow_add: true
+        required: true
+        default: [RADAR]
+        hint: RADAR, DSP, FPGA, ARRAY처럼 입력
+      - label: 본문
+        name: body
+        widget: markdown
+        required: true
+        modes: [rich_text, raw]
